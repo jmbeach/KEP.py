@@ -1,8 +1,8 @@
-"""Constant register module"""
-from lib.register import Register
+"""Normal register module"""
+from keppy.register import Register
 
-class ConstantRegister(Register):
-    """Represents a constant register
+class RegularRegister(Register):
+    """Represents a normal register
     Between K0000 - K9999.
     Each address is a byte on an 8-bit device and a word on a 16-bit
     device.

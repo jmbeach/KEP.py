@@ -1,5 +1,5 @@
 """Kepware tag group module"""
-from lib.tag import Tag
+from keppy.tag import Tag
 class TagGroup(object):
     """Represents a Kepware tag group"""
     def __init__(self, tag_group_dict):

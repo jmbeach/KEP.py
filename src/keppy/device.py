@@ -1,5 +1,5 @@
 """Kepware device module"""
-from lib.tag_group import TagGroup
+from keppy.tag_group import TagGroup
 
 class Device(object):
     """Represents a Kepware device"""

@@ -1,5 +1,5 @@
 """Channel module"""
-from lib.device import Device
+from keppy.device import Device
 
 class Channel(object):
     """Represents a Kepware channel"""

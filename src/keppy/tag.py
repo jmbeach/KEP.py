@@ -1,7 +1,7 @@
 """Kepware tag module"""
 
 import re
-from lib.tag_type_siemens import SiemensTcpIpTagType
+from keppy.tag_type_siemens import SiemensTcpIpTagType
 
 class Tag(object):
     """Represents a kepware tag"""

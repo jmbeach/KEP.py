@@ -1,8 +1,8 @@
 """Simulator device module"""
 
-from lib.regular_register import RegularRegister
-from lib.string_register import StringRegister
-from lib.tag_type_siemens import SiemensTcpIpTagType
+from keppy.regular_register import RegularRegister
+from keppy.string_register import StringRegister
+from keppy.tag_type_siemens import SiemensTcpIpTagType
 
 class SimulatorDevice(object):
     """Represents a simulator device"""

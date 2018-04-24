@@ -1,7 +1,7 @@
 """Kepware project module"""
 import json
 from collections import OrderedDict
-from lib.channel import Channel
+from keppy.channel import Channel
 
 class Project(object):
     """Represents a Kepware project"""
