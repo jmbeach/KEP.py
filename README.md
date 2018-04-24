@@ -26,3 +26,13 @@ Channel
     ├─tag2
     ...
 ```
+
+# Usage
+
+Install with pip
+
+`pip install keppy`
+
+or clone and run
+
+`python setup.py install`
