@@ -36,3 +36,6 @@ Install with pip
 or clone and run
 
 `python setup.py install`
+
+To see an extensive usage of this library, look at
+[kep-simgen](https://github.com/jmbeach/kep-simgen).
