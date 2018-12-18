@@ -7,9 +7,9 @@ from keppy.tag_type_siemens import SiemensTcpIpTagType
 class SimulatorDevice(object):
     """Represents a simulator device"""
 
-    def __init__(self, is_16bit):
-        self._normal_register = RegularRegister(is_16bit)
-        self._string_register = StringRegister(is_16bit)
+    def __init__(self, is_16bit, normal_register_initial_address="K0000", string_register_initial_address="S000"):
+        self._normal_register = RegularRegister(is_16bit, normal_register_initial_address)
+        self._string_register = StringRegister(is_16bit, string_register_initial_address)
         self._is_sixteen_bit = is_16bit
         self._tag_type_processor = {
             SiemensTcpIpTagType.BOOLEAN: self.process_boolean,

@@ -12,5 +12,5 @@ class RegularRegister(Register):
     DWord, Long, LBCD, Float, LLong, QWord,
     Double, Date, Boolean"""
 
-    def __init__(self, is_16bit):
-        Register.__init__(self, is_16bit, "K0000")
+    def __init__(self, is_16bit, initial_address="K0000"):
+        Register.__init__(self, is_16bit, initial_address)

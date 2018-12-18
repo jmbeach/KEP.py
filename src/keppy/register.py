@@ -18,12 +18,13 @@ class Register(object):
     """Represents the register of a simulator"""
 
     def __init__(self, is_16bit, initial_address):
+        self._is_16bit = is_16bit
         self._current_address = initial_address
         self._register_map = {}
         self._size_of_current_register_address = 4
         self.mark_address(initial_address, self._size_of_current_register_address)
         self._current_bit_address = ""
-        self._is_16bit = is_16bit
+        self.move_to_next_bit_address()
 
     @property
     def current_address(self):

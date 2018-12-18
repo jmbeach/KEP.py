@@ -5,5 +5,5 @@ class StringRegister(Register):
     """Represents a string register
     Between S000 - S999."""
 
-    def __init__(self, is_16bit):
-        Register.__init__(self, is_16bit, "S000")
+    def __init__(self, is_16bit, initial_address="S0000"):
+        Register.__init__(self, is_16bit, initial_address)
