@@ -1,5 +1,6 @@
 """Kepware device module"""
 from keppy.tag_group import TagGroup
+from keppy.tag import Tag
 
 class Device(object):
     """Represents a Kepware device"""
@@ -7,6 +8,7 @@ class Device(object):
         self._ignore_list = ignore_list
         self._device_dict = device_dict
         self._tag_groups = self.parse_tag_groups()
+        self._tags = self.parse_tags()
         self._is_sixteen_bit = is_sixteen_bit
         self.set_driver_simulated()
 
@@ -35,10 +37,22 @@ class Device(object):
 
         return tag_groups
 
+    def parse_tags(self):
+        tags = []
+        if 'tags' not in self._device_dict:
+            return tags
+        for tag in self._device_dict['tags']:
+            tags.append(Tag(tag))
+        return tags
+
     @property
     def tag_groups(self):
         """Gets the tag groups of the device"""
         return self._tag_groups
+
+    @property
+    def tags(self):
+        return self._tags
 
     @property
     def is_sixteen_bit(self):
