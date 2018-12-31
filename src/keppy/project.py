@@ -8,7 +8,7 @@ class Project(object):
     def __init__(self, kepware_dict, is_sixteen_bit, ignore_list):
         self._ignore_list = ignore_list
         self._kepware_dict = kepware_dict
-        self._project_dict = kepware_dict["Project"]
+        self._project_dict = kepware_dict["project"]
         self._is_sixteen_bit = is_sixteen_bit
         self._channels = self.parse_channels()
 
