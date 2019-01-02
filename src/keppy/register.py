@@ -19,6 +19,9 @@ class Register(object):
 
     def __init__(self, is_16bit, initial_address):
         self._is_16bit = is_16bit
+        self._register_size = 8
+        if self._is_16bit:
+            self._register_size = 16
         self._current_address = initial_address
         self._register_map = {}
         self._size_of_current_register_address = 4
@@ -60,12 +63,10 @@ class Register(object):
 
     def next_address_avoid_collision(self, start_addr):
         """Finds the next address recursively which does not collide with any other address"""
-        for i in range(1, self._size_of_current_register_address):
-            str_addr = next_addr(start_addr, i)
-            if self.is_address_in_use(str_addr):
-                return self.next_address_avoid_collision(
-                    next_addr(start_addr, self._size_of_current_register_address + 1))
-        return next_addr(start_addr, self._size_of_current_register_address)
+        i = 1
+        while self.is_address_in_use(next_addr(start_addr, i)):
+            i += 1
+        return next_addr(start_addr, i)
 
     def next_address(self):
         """Returns the next address after the current"""
@@ -81,6 +82,7 @@ class Register(object):
     def move_to_next_bit_address(self):
         """Moves to next available bit address position"""
         self._current_bit_address = self.next_bit_address()
+        self.mark_address(self._current_bit_address.split('.')[0], self._size_of_current_register_address)
 
     def get_array(self, array_size):
         """Gets an array address"""
