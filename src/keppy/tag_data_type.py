@@ -2,8 +2,8 @@
 
 from enum import Enum
 
-class SiemensTcpIpTagType(Enum):
-    """Enum for siemens TCP / IP data types"""
+class TagDataType(Enum):
+    """Enum for tag data types"""
     STRING = 0
     BOOLEAN = 1
     BYTE = 3
