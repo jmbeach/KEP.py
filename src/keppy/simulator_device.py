@@ -48,7 +48,8 @@ class SimulatorDevice(object):
     def process_tag(self, tag):
         """Processes tag and detects which function to use"""
         try:
-            self._tag_type_processor[tag.data_type](tag)
+            if not self._is_function(tag):
+                self._tag_type_processor[tag.data_type](tag)
         except KeyError as ex:
             raise Exception('Tag type {0} not recognized for tag {1}'
                             .format(
@@ -171,3 +172,10 @@ class SimulatorDevice(object):
             return
         # each string address needs 1 byte = 1 address
         self.string_register.move_to_next_address(1)
+
+    def _is_function(self, tag):
+        function_names = ['USER', 'RAMP', 'SINE', 'RANDOM']
+        for function_name in function_names:
+            if function_name in tag.get_address():
+                return True
+        return False
