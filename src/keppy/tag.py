@@ -1,7 +1,7 @@
 """Kepware tag module"""
 
 import re
-from keppy.tag_type_siemens import SiemensTcpIpTagType
+from keppy.tag_data_type import TagDataType
 
 class Tag(object):
     """Represents a kepware tag"""
@@ -17,7 +17,8 @@ class Tag(object):
     @property
     def data_type(self):
         """Gets tag data type"""
-        return SiemensTcpIpTagType(int(self._tag_dict["servermain.TAG_DATA_TYPE"]))
+        data_type = int(self._tag_dict["servermain.TAG_DATA_TYPE"]);
+        return TagDataType(data_type)
 
     def get_address(self):
         """Gets tag address"""

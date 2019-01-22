@@ -9,4 +9,4 @@ from keppy.simulator_device import SimulatorDevice
 from keppy.string_register import StringRegister
 from keppy.tag import Tag
 from keppy.tag_group import TagGroup
-from keppy.tag_type_siemens import SiemensTcpIpTagType
+from keppy.tag_data_type import TagDataType

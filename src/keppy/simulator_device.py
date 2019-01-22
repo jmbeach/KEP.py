@@ -2,7 +2,7 @@
 
 from keppy.regular_register import RegularRegister
 from keppy.string_register import StringRegister
-from keppy.tag_type_siemens import SiemensTcpIpTagType
+from keppy.tag_data_type import TagDataType
 
 class SimulatorDevice(object):
     """Represents a simulator device"""
@@ -12,18 +12,22 @@ class SimulatorDevice(object):
         self._string_register = StringRegister(is_16bit, string_register_initial_address)
         self._is_sixteen_bit = is_16bit
         self._tag_type_processor = {
-            SiemensTcpIpTagType.BOOLEAN: self.process_boolean,
-            SiemensTcpIpTagType.BOOLEAN_ARRAY: self.process_boolean_array,
-            SiemensTcpIpTagType.BYTE: self.process_byte,
-            SiemensTcpIpTagType.DWORD: self.process_dword,
-            SiemensTcpIpTagType.DWORD_ARRAY: self.process_dword_array,
-            SiemensTcpIpTagType.FLOAT: self.process_float,
-            SiemensTcpIpTagType.REAL_ARRAY: self.process_real_array,
-            SiemensTcpIpTagType.SHORT: self.process_short,
-            SiemensTcpIpTagType.SHORT_ARRAY: self.process_short_array,
-            SiemensTcpIpTagType.STRING: self.process_string,
-            SiemensTcpIpTagType.WORD: self.process_word,
-            SiemensTcpIpTagType.WORD_ARRAY: self.process_word_array
+            TagDataType.BOOLEAN: self.process_boolean,
+            TagDataType.BOOLEAN_ARRAY: self.process_boolean_array,
+            TagDataType.BYTE: self.process_byte,
+            TagDataType.DWORD: self.process_dword,
+            TagDataType.LONG: self.process_dword,
+            TagDataType.DWORD_ARRAY: self.process_dword_array,
+            TagDataType.FLOAT: self.process_float,
+            TagDataType.REAL_ARRAY: self.process_real_array,
+            TagDataType.SHORT: self.process_short,
+            TagDataType.SHORT_ARRAY: self.process_short_array,
+            TagDataType.STRING: self.process_string,
+            TagDataType.WORD: self.process_word,
+            TagDataType.WORD_ARRAY: self.process_word_array,
+            TagDataType.LLONG: self._process_64_bit_type,
+            TagDataType.QWORD: self._process_64_bit_type,
+            TagDataType.DOUBLE: self._process_64_bit_type
         }
 
     @property
@@ -75,13 +79,22 @@ class SimulatorDevice(object):
         # each address needs 1 byte
         self.normal_register.move_to_next_address(1)
 
+    def _process_64_bit_type(self, tag):
+        tag.set_address(self.normal_register.current_address)
+        if self.is_sixteen_bit:
+            # each qword address needs 8 bytes = 4 addresses
+            self.normal_register.move_to_next_address(4)
+            return
+        # each qword address needs 8 bytes = 8 addresses
+        self.normal_register.move_to_next_address(8)
+
     def _process_32_bit_type(self, tag):
         tag.set_address(self.normal_register.current_address)
         if self.is_sixteen_bit:
-            # each word address needs 4 bytes = 2 addresses
+            # each dword address needs 4 bytes = 2 addresses
             self.normal_register.move_to_next_address(2)
             return
-        # each word address needs 4 bytes = 4 addresses
+        # each dword address needs 4 bytes = 4 addresses
         self.normal_register.move_to_next_address(4)
 
     def _process_16_bit_type(self, tag):
