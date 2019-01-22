@@ -9,7 +9,7 @@ with open(path.join(HERE, 'README.md'), encoding='utf-8') as readme:
 
 setup(
     name='keppy',
-    version='0.0.6',
+    version='0.0.7',
     install_requires=['Enum34'],
     description='A Python parser of Kepware projects',
     long_description=LONG_DESCRIPTION,
