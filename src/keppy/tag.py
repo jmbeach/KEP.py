@@ -17,7 +17,8 @@ class Tag(object):
     @property
     def data_type(self):
         """Gets tag data type"""
-        return TagDataType(int(self._tag_dict["servermain.TAG_DATA_TYPE"]))
+        data_type = int(self._tag_dict["servermain.TAG_DATA_TYPE"]);
+        return TagDataType(data_type)
 
     def get_address(self):
         """Gets tag address"""
