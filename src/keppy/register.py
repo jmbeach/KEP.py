@@ -63,7 +63,7 @@ class Register(object):
 
     def next_address_avoid_collision(self, start_addr):
         """Finds the next address recursively which does not collide with any other address"""
-        i = 1
+        i = self._size_of_current_register_address
         while self.is_address_in_use(next_addr(start_addr, i)):
             i += 1
         return next_addr(start_addr, i)

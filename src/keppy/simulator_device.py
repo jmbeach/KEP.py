@@ -27,7 +27,7 @@ class SimulatorDevice(object):
             TagDataType.WORD_ARRAY: self.process_word_array,
             TagDataType.LLONG: self._process_64_bit_type,
             TagDataType.QWORD: self._process_64_bit_type,
-            TagDataType.DOUBLE: self._process_64_bit_type
+            TagDataType.DOUBLE: self.process_dword
         }
 
     @property
