@@ -22,12 +22,13 @@ class Register(object):
         self._register_size = 8
         if self._is_16bit:
             self._register_size = 16
-        self._current_address = initial_address
-        self._register_map = {}
-        self._size_of_current_register_address = 4
-        self.mark_address(initial_address, self._size_of_current_register_address)
         self._current_bit_address = ""
+        self._current_address = initial_address;
+        self._size_of_current_register_address = 0;
+        self._register_map = {}
         self.move_to_next_bit_address()
+        self.move_to_next_address(1);
+        self.mark_address(initial_address, self._size_of_current_register_address)
 
     @property
     def current_address(self):
